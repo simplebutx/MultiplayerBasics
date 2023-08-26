@@ -34,6 +34,7 @@ public class MyNetworkPlayer : NetworkBehaviour
     [Command] //클라이언트에서 서버의 method를 실행
     private void CmdSetDisplayName(string newDisplayName)
     {
+        if(newDisplayName.Length < 2 || newDisplayName.Length > 20) { return; }
         RpcLogNewName(newDisplayName);
         SetDisplayName(newDisplayName);
     }
@@ -55,7 +56,7 @@ public class MyNetworkPlayer : NetworkBehaviour
     [ContextMenu("SetMyName")] //우클릭 메뉴에서 SetMyName을 선택하면 밑에 함수 실행 (테스트용)
     public void SetMyName()
     {
-        CmdSetDisplayName("My New Name");
+        CmdSetDisplayName("M");
     }
 
     [ClientRpc]
